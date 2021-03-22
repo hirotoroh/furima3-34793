@@ -17,7 +17,7 @@
 
 ### Association
 - has_many :items
-- has_many :purchase
+- has_many :purchases
 
 ## itemsテーブル
 
@@ -29,27 +29,29 @@
 | status_id         | integer    | null: false                    |
 | shipping_cost_id  | integer    | null: false                    |
 | shipping_area_id  | integer    | null: false                    |
-| days_id           | integer    | null: false                    |
+| shipping_day_id   | integer    | null: false                    |
 | price             | integer    | null: false                    |
-| users             | references | null: false, foreign_key: true |
+| user              | references | null: false, foreign_key: true |
+
 
 ### Association
-- belongs_to :items
+- belongs_to :user
 - has_one :purchase
 
-## purchaseテーブル
+## purchasesテーブル
 
-| Column            | Type    | Option                         |
-| ----------------- | ------- | ------------------------------ |
-| user_id           | integer | null: false, foreign_key: true |
-| item_id           | integer | null: false, foreign_key: true |
+| Column            | Type       | Option                         |
+| ----------------- | ---------- | ------------------------------ |
+| user              | references | null: false, foreign_key: true |
+| item              | references | null: false, foreign_key: true |
 
 ### Associations
 
 - belongs_to :user
 - belongs_to :item
+- has_one :address
 
-## addressテーブル
+## addressesテーブル
 
 | Column            | Type       | Option                         |
 | ----------------- | ---------- | ------------------------------ |
