@@ -17,21 +17,21 @@
 
 ### Association
 - has_many :items
-- belongs_to :purchase
+- has_many :purchase
 
 ## itemsテーブル
 
-| Column            | Type      | Option                         |
-| ----------------- | --------- | ------------------------------ |
-| name         　　　| string    | null: false                    | 
-| description       | text      | null: false                    |
-| category_id       | integer   | null: false                    |  
-| status_id         | integer   | null: false                    |
-| shipping_cost_id  | integer   | null: false                    |
-| shipping_area_id  | integer   | null: false                    |
-| days_id           | integer   | null: false                    |
-| price             | integer   | null: false                    |
-| users             | reference | null: false, foreign_key: true |
+| Column            | Type       | Option                         |
+| ----------------- | ---------- | ------------------------------ |
+| name         　　　| string     | null: false                    | 
+| description       | text       | null: false                    |
+| category_id       | integer    | null: false                    |  
+| status_id         | integer    | null: false                    |
+| shipping_cost_id  | integer    | null: false                    |
+| shipping_area_id  | integer    | null: false                    |
+| days_id           | integer    | null: false                    |
+| price             | integer    | null: false                    |
+| users             | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :items
@@ -46,19 +46,20 @@
 
 ### Associations
 
-- belongs_to :users
-- belongs_to :items
+- belongs_to :user
+- belongs_to :item
 
 ## addressテーブル
 
-| Column            | Type    | Option      |
-| ----------------- | ------- | ----------- |
-| postal_code       | string  | null: false |
-| shipping_area_id  | integer | null: false |
-| city              | string  | null: false |
-| house_number      | string  | null: false |
-| build_name        | string  |             |
-| phone_number      | string  | null: false |
+| Column            | Type       | Option                         |
+| ----------------- | ---------- | ------------------------------ |
+| postal_code       | string     | null: false                    |
+| shipping_area_id  | integer    | null: false                    |
+| city              | string     | null: false                    | 
+| house_number      | string     | null: false                    |
+| build_name        | string     |                                |
+| phone_number      | string     | null: false                    |
+| purchase          | references | null: false, foreign_key: true |
 
 ### Associations
-- belongs_to :users
+- belongs_to :purchase
