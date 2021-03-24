@@ -9,4 +9,6 @@ FactoryBot.define do
     last_name {"大斗"}
     family_name_kana {"サカモト"}
     last_name_kana {"ヒロト"}
-    birth_day {Faker::Date.in_date_period}
+    birth_day {Faker::Date.backward}
+  end
+end
