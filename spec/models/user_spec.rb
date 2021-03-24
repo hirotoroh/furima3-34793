@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-    before do
-      @user = FactoryBot.build(:user)
-    end
+  before do
+    @user = FactoryBot.build(:user)
+  end
   describe 'ユーザー管理機能' do
     context '新規登録できるとき' do
       it '全てが存在すれば登録できること' do
