@@ -23,6 +23,20 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Email can't be blank")
       end
 
+      it 'emailは@を含むこと' do
+        @user.email = 'testcom'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Email is invalid')
+      end
+
+      it 'emailは一意性であること' do
+        @user.save
+        another_user = FactoryBot.build(:user)
+        another_user.email = @user.email
+        another_user.valid?
+        expect(another_user.errors.full_messages).to include('Email has already been taken')
+      end
+
       it 'passwordが空では登録できないこと' do
         @user.password = ''
         @user.valid?
@@ -63,10 +77,22 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Family name can't be blank")
       end
 
+      it 'family_nameは漢字・平仮名・カタカナ以外では登録できないこと' do
+        @user.family_name = 'a'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Family name is invalid')
+      end
+
       it 'last_nameが空では登録できないこと' do
         @user.last_name = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Last name can't be blank")
+      end
+
+      it 'last_nameは漢字・平仮名・カタカナ以外では登録できないこと' do
+        @user.last_name = 'a'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Last name is invalid')
       end
 
       it 'family_name_kanaが空では登録できないこと' do
@@ -75,10 +101,22 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Family name kana can't be blank")
       end
 
+      it 'family_name_kanaは全角カタカナ以外では登録できないこと' do
+        @user.family_name_kana = 'a'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Family name kana is invalid')
+      end
+
       it 'last_name_kanaが空では登録できないこと' do
         @user.last_name_kana = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Last name kana can't be blank")
+      end
+
+      it 'last_name_kanaは全角カタカナ以外では登録できないこと' do
+        @user.last_name_kana = 'a'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Last name kana is invalid')
       end
 
       it 'birth_dayが空では登録できないこと' do
