@@ -5,6 +5,7 @@ class Item < ApplicationRecord
   belongs_to :shipping_cost
   belongs_to :shipping_area
   belongs_to :shipping_day
+  has_one_attached :image
 
   varidates :name, :description, presence: true
 
