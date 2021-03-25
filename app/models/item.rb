@@ -7,7 +7,7 @@ class Item < ApplicationRecord
   belongs_to :shipping_day
   has_one_attached :image
 
-  validates :name, :description, presence: true
+  validates :name, :description, :image, presence: true
   validates :price, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999}, format: { with: /\A[0-9]+\z/ }
 
   validates :category_id, numericality: { other_than: 0 } 
