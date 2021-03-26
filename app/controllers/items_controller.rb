@@ -3,8 +3,6 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all
-    # @items = [{id:1, name: ""}, {id:2, name: ""}]
-    # @items = [0]
   end
 
   def new
