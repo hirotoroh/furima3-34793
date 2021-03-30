@@ -11,7 +11,6 @@ class OrderAddress
     validates :house_number, format: {with: /\A[0-9]+\z/}
     validates :phone_number, format: {with: /\A\d{11}\z/}
     validates :order_id
-  }
   end
 
   def save
