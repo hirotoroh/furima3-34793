@@ -61,7 +61,7 @@
 | house_number      | string     | null: false                    |
 | build_name        | string     |                                |
 | phone_number      | string     | null: false                    |
-| purchase          | references | null: false, foreign_key: true |
+| order             | references | null: false, foreign_key: true |
 
 ### Associations
 - belongs_to :order
