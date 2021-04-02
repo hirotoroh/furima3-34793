@@ -6,6 +6,9 @@ class OrdersController < ApplicationController
     if @item.user_id == current_user.id
       redirect_to root_path
     end
+    unless @item.order == nil
+        redirect_to root_path
+    end
     @order_address = OrderAddress.new
   end
 
@@ -13,6 +16,9 @@ class OrdersController < ApplicationController
     @item = Item.find(params[:item_id])
     if @item.user_id == current_user.id
       redirect_to root_path
+    end
+    unless @item.order == nil
+        redirect_to root_path
     end
     @order_address = OrderAddress.new(order_params)
     if @order_address.valid?
