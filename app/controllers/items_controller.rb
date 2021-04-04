@@ -12,6 +12,9 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
+    unless @item.order == nil
+      redirect_to root_path
+    end
     if @item.save
       redirect_to root_path
     else
