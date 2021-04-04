@@ -4,14 +4,10 @@ class OrdersController < ApplicationController
   before_action :set_limits, only: [:index, :create]
 
   def index
-    set_item
-    set_limits
     @order_address = OrderAddress.new
   end
 
   def create
-    set_item
-    set_limits
     @order_address = OrderAddress.new(order_params)
     if @order_address.valid?
       pay_item
