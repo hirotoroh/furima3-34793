@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_limits
 
   def index
     @items = Item.order(id: :DESC).includes(:user)
@@ -12,9 +13,7 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    unless @item.order == nil
-      redirect_to root_path
-    end
+    set_limits
     if @item.save
       redirect_to root_path
     else
@@ -29,9 +28,7 @@ class ItemsController < ApplicationController
     unless @item.user_id == current_user.id
       redirect_to action: :index
     end
-    unless @item.order == nil
-      redirect_to root_path
-    end
+    set_limits
   end
 
   def update
@@ -62,5 +59,11 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def set_limits
+    unless @item.order == nil
+      redirect_to root_path
+    end
   end
 end
