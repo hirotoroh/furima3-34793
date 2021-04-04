@@ -1,26 +1,17 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
   before_action :set_item, only: [:index, :create]
+  before_action :set_limits, only: [:index, :create]
 
   def index
     set_item
-    if @item.user_id == current_user.id
-      redirect_to root_path
-    end
-    unless @item.order == nil
-        redirect_to root_path
-    end
+    set_limits
     @order_address = OrderAddress.new
   end
 
   def create
     set_item
-    if @item.user_id == current_user.id
-      redirect_to root_path
-    end
-    unless @item.order == nil
-        redirect_to root_path
-    end
+    set_limits
     @order_address = OrderAddress.new(order_params)
     if @order_address.valid?
       pay_item
@@ -48,6 +39,15 @@ class OrdersController < ApplicationController
 
   def set_item
     @item = Item.find(params[:item_id])
+  end
+
+  def set_limits
+    if @item.user_id == current_user.id
+      redirect_to root_path
+    end
+    unless @item.order == nil
+        redirect_to root_path
+    end
   end
 
 end
