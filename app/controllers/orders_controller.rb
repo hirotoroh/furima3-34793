@@ -42,7 +42,7 @@ class OrdersController < ApplicationController
       redirect_to root_path
     end
     unless @item.order == nil
-        redirect_to root_path
+      redirect_to root_path
     end
   end
 
