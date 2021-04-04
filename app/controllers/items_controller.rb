@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-  before_action :set_limits, only: [:edit]
+  before_action :set_limits, only: [:edit, :update]
 
   def index
     @items = Item.order(id: :DESC).includes(:user)
