@@ -9,7 +9,7 @@ class OrderAddress
     validates :shipping_area_id, numericality: { other_than: 0 }
     validates :city
     validates :house_number
-    validates :phone_number, format: {with: /\A\d{11}\z/}
+    validates :phone_number, format: {with: /\A\d{10,11}\z/}
     validates :token
   end
 
